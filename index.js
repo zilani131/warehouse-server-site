@@ -15,6 +15,13 @@ async function run(){
 try{
     await client.connect();
     const itemsCollection = client.db("warehouse").collection("vehicles");
+    app.get('/', async (req,res)=>{
+        const query={};
+        const cursor=itemsCollection.find(query);
+        const result=await cursor.toArray();
+        res.send(result)
+        console.log(result)
+    })
 }
 finally{
 
@@ -26,10 +33,7 @@ run().catch(console.dir)
 */
 app.use(cors());
 app.use(express.json());
-app.get('/',(req,res)=>{
 
-    res.send('John is running')
-});
 app.listen(port,()=>{
     console.log(`listent to the port ${port}`)
 }
