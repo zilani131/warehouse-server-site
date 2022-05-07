@@ -67,6 +67,16 @@ async function run() {
         res.send(result)
 
     });
+    // my items
+    app.get("/myitem",async (req,res)=>{
+        const email=req.query.email;
+        console.log(email)
+        const query={email:email}
+        console.log(query)
+        const cursor=itemsCollection.find(query)
+        const result=await cursor.toArray()
+        res.send(result)
+    })
   } finally {
   }
 }
