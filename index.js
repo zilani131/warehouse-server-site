@@ -57,7 +57,8 @@ async function run() {
         updateDoc,
         options
       );
-      res.send;
+      console.log(result)
+      res.send(result);
     });
     // adding new item
     app.post("/home",async (req, res) => {
