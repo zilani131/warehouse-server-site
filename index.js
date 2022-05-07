@@ -77,6 +77,15 @@ async function run() {
         const result=await cursor.toArray()
         res.send(result)
     })
+    //delete item
+    app.delete("/home/:id",async (req,res)=>{
+        console.log(req.params)
+        const id=req.params.id;
+        const query={_id:ObjectId(id)}
+        const result = await itemsCollection.deleteOne(query);
+        console.log(result)
+        res.json(result)
+    })
   } finally {
   }
 }
