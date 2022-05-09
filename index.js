@@ -1,8 +1,7 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
-const jwt = require('jsonwebtoken');
-const { json } = require("express/lib/response");
+
 const port = process.env.PORT || 5000;
 const app = express();
 const ObjectId = require("mongodb").ObjectId;
@@ -87,13 +86,7 @@ async function run() {
         console.log(result)
         res.json(result)
     })
-    // jwt token
-    app.post('/login', async(req,res)=>{
-      const user=req.body;
-      const accessToken=jwt.sign(user,process.env.ACCESS_TOKEN_SECRET);
-      res.send({accessToken});
 
-    })
 
   } finally {
   }
