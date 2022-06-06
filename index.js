@@ -1,7 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
-
 const port = process.env.PORT || 5000;
 const app = express();
 const ObjectId = require("mongodb").ObjectId;
@@ -41,25 +40,25 @@ async function run() {
       console.log(result);
     });
     // reduce quantity
-    app.put("/inventory/:id", async (req, res) => {
-      const id = req.params.id;
-      const item = req.body.newQuantity;
-      console.log(item);
-      const filter = { _id: ObjectId(id) }; //name doesn't matter
-      const options = { upsert: true }; //to update we need it
-      const updateDoc = {
-        $set: {
-          quantity: item, //must be give the value in this format
-        },
-      };
-      const result = await itemsCollection.updateOne(
-        filter,
-        updateDoc,
-        options
-      );
-      console.log(result)
-      res.send(result);
-    });
+    // app.put("/inventory/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const item = req.body.newQuantity;
+    //   console.log(item);
+    //   // const filter = { _id: ObjectId(id) }; //name doesn't matter
+    //   // const options = { upsert: true }; //to update we need it
+    //   // const updateDoc = {
+    //   //   $set: {
+    //   //     quantity: item, //must be give the value in this format
+    //   //   },
+    //   // };
+    //   // const result = await itemsCollection.updateOne(
+    //   //   filter,
+    //   //   updateDoc,
+    //   //   options
+    //   // );
+    //   // console.log(result)
+    //   // res.send(result);
+    // });
     // adding new item
     app.post("/home",async (req, res) => {
         const newItem=req.body;
